@@ -20,8 +20,6 @@ interface AuthProviderProps {
 const AuthContext = createContext({} as IAuthContextData);
 
 const AuthContextProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User>({} as User);
-
   const defaultUser: User = {
     name: "Gabriel",
     email: "gabrielvascoauzier@gmail.com",
@@ -29,21 +27,11 @@ const AuthContextProvider = ({ children }: AuthProviderProps) => {
     avatar: "gabriel.png",
   };
 
-  useEffect(() => {
-    setUser(defaultUser);
-  }, []);
+  const [user, setUser] = useState<User>(defaultUser);
 
   return (
-    <AuthContext.Provider value={{ user: defaultUser }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
 };
 
-const useAuth = () => {
-  const authContext = useContext(AuthContext);
-
-  return authContext;
-};
-
-export { AuthContextProvider, useAuth };
+export { AuthContext, AuthContextProvider };

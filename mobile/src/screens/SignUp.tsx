@@ -19,7 +19,7 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { api } from "@services/api";
 
-import { AppError } from "@helpers/AppError";
+import { AppError } from "@utils/AppError";
 
 type FormDataProps = {
   name: string;
